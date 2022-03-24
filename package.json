@@ -8,6 +8,16 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.8.0"
+    "sass": "^1.49.9",
+    "vite": "^2.8.0",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "dependencies": {
+    "unplugin-vue-components": "^0.18.4",
+    "vite-plugin-vue2": "^1.9.3",
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.3",
+    "vuetify": "^2.6.4",
+    "vuex": "^3.6.2"
   }
 }
