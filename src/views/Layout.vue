@@ -1,21 +1,29 @@
 <template>
-  <v-app>
+  <v-app style="
+    background: #3A1C71;
+    background: -webkit-linear-gradient(to top left, #8c69cc, #613da6, #3A1C71);
+    background: linear-gradient(to top left, #8c69cc, #613da6, #3A1C71);
+  ">
+    <v-app-bar
+        elevation="4"
+        app
+    >
+      <v-container>
+        <v-app-bar-title>Agencia</v-app-bar-title>
+      </v-container>
+    </v-app-bar>
     <v-main>
-      <v-toolbar
-          extended
-          dark
-          color="#6A76AB"
-          src="https://picsum.photos/id/351/1080/720"
-      >
-        <template v-slot:img="{ props }">
-          <v-img
-              v-bind="props"
-              gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
-          ></v-img>
-        </template>
-        <v-toolbar-title>Polimundo</v-toolbar-title>
-      </v-toolbar>
-      <router-view></router-view>
+      <v-container>
+        <SearchTicket/>
+        <router-view></router-view>
+      </v-container>
     </v-main>
   </v-app>
 </template>
+<script>
+import SearchTicket from "../components/SearchFlight.vue";
+
+export default {
+  components: {SearchTicket}
+}
+</script>
