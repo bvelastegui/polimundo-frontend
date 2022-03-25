@@ -582,7 +582,9 @@ const data = [
 ]
 
 export default {
-    getAll(cb) {
-        setTimeout(() => cb(data), 100)
+    getAll() {
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(data), 1500)
+        })
     },
 }
