@@ -4,6 +4,7 @@ const data = [
         "company": "US Airlines",
         "points": 25000,
         "duration": 590,
+        "price": 1509,
         "segment": [
             {
                 "duration": 590,
@@ -19,6 +20,7 @@ const data = [
         "company": "Dalta",
         "points": 20000,
         "duration": 862,
+        "price": 1550,
         "segment": [
             {
                 "duration": 635,
@@ -42,6 +44,7 @@ const data = [
         "company": "Aviana",
         "points": 17000,
         "duration": 1050,
+        "price": 1790,
         "segment": [
             {
                 "duration": 515,
@@ -74,7 +77,7 @@ export default {
     find() {
         return new Promise((resolve) => {
             setTimeout(
-                () => resolve(Math.random() > 0.5 ? [data[0]] : [data[1], data[2]]),
+                () => resolve(Math.random() > 0.5 ? [data[0]] : data),
                 1500
             )
         })
