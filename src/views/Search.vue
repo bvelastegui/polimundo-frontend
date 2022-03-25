@@ -1,7 +1,9 @@
 <template>
-  <v-card class="px-4 py-3">
-    <v-card-title>Encuentra tu vuelo</v-card-title>
-    <v-form>
+  <v-card :loading="loading">
+    <v-toolbar>
+      <v-toolbar-title>Encuentra tu vuelo</v-toolbar-title>
+    </v-toolbar>
+    <v-form @submit.prevent="redirectToResults">
       <v-container>
         <v-row>
           <v-col
@@ -13,7 +15,8 @@
                 v-model="origin"
                 :items="airports"
                 filled
-                label="Origen"
+                :disabled="loading"
+                label="Ciudad de origen"
                 item-value="code"
                 item-text="code"
             >
@@ -34,7 +37,8 @@
                 v-model="destination"
                 :items="airports"
                 filled
-                label="Destino"
+                :disabled="loading"
+                label="Ciudad de destino"
                 item-value="code"
                 item-text="code"
             >
@@ -55,6 +59,7 @@
                 v-model="depart_date"
                 color="#3A1C71"
                 filled
+                :disabled="loading"
                 append-icon="mdi-calendar"
                 label="Fecha de partida"
             ></v-text-field>
@@ -68,6 +73,7 @@
                 v-model="return_date"
                 color="#3A1C71"
                 filled
+                :disabled="loading"
                 append-icon="mdi-calendar"
                 label="Fecha de retorno"
             ></v-text-field>
@@ -87,6 +93,7 @@
                   dark
                   color="#3A1C71"
                   elevation="2"
+                  type="submit"
               >
                 Buscar
               </v-btn>
@@ -101,6 +108,10 @@
 import {mapActions, mapState} from 'vuex'
 
 export default {
+  data: () => ({
+    loading: true,
+  }),
+
   computed: {
     origin: {
       get() {
@@ -136,18 +147,22 @@ export default {
     },
     ...mapState({
       airports: state => state.search.airports
-    })
+    }),
   },
 
   methods: {
     ...mapActions({
       choseOrigin: 'search/choseOrigin',
       choseDestination: 'search/choseDestination'
-    })
+    }),
+    redirectToResults() {
+      this.$router.push('flights')
+    }
   },
 
-  created() {
-    this.$store.dispatch('search/getAllAirports')
+  async created() {
+    await this.$store.dispatch('search/getAllAirports')
+    this.loading = false
   }
 }
 </script>

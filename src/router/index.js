@@ -11,9 +11,9 @@ const routes = [
         children: [
             {
                 path: '/',
-                name: 'home',
-                component: () => import('./../views/Home.vue')
-            }
+                name: 'search',
+                component: () => import('./../views/Search.vue')
+            },
         ]
     }
 ];
