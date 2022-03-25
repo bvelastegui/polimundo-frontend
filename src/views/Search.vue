@@ -55,28 +55,64 @@
               md="6"
               lg="3"
           >
-            <v-text-field
-                v-model="depart_date"
-                color="#3A1C71"
-                filled
-                :disabled="loading"
-                append-icon="mdi-calendar"
-                label="Fecha de partida"
-            ></v-text-field>
+            <v-menu
+                v-model="depart_date_menu"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                max-width="290px"
+                min-width="290px"
+            >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                    color="#3A1C71"
+                    filled
+                    readonly
+                    :disabled="loading"
+                    append-icon="mdi-calendar"
+                    label="Fecha de partida"
+                    v-on="on"
+                    :value="depart_date"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                  v-model="depart_date"
+                  no-title
+                  @input="depart_date_menu = false"
+              ></v-date-picker>
+            </v-menu>
           </v-col>
           <v-col
               cols="12"
               md="6"
               lg="3"
           >
-            <v-text-field
-                v-model="return_date"
-                color="#3A1C71"
-                filled
-                :disabled="loading"
-                append-icon="mdi-calendar"
-                label="Fecha de retorno"
-            ></v-text-field>
+            <v-menu
+                v-model="return_date_menu"
+                :close-on-content-click="false"
+                transition="scale-transition"
+                offset-y
+                max-width="290px"
+                min-width="290px"
+            >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                    :value="return_date"
+                    color="#3A1C71"
+                    filled
+                    :disabled="loading"
+                    append-icon="mdi-calendar"
+                    label="Fecha de retorno"
+                    v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                  v-model="return_date"
+                  :min="depart_date"
+                  no-title
+                  @input="return_date_menu = false"
+              ></v-date-picker>
+            </v-menu>
           </v-col>
         </v-row>
         <v-row>
@@ -110,6 +146,8 @@ import {mapActions, mapState} from 'vuex'
 export default {
   data: () => ({
     loading: true,
+    depart_date_menu: false,
+    return_date_menu: false,
   }),
 
   computed: {
