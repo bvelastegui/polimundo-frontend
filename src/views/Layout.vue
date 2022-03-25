@@ -21,7 +21,7 @@
   </v-app>
 </template>
 <script>
-import SearchTicket from "../components/SearchFlight.vue";
+import SearchTicket from "./../components/SearchFlight.vue";
 
 export default {
   components: {SearchTicket}
