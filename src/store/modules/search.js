@@ -5,17 +5,19 @@ const state = () => ({
     destination: null,
     depart_date: null,
     return_date: null,
-    results: [],
     airports: []
 })
 
-const getters = {}
+const getters = {
+    searchTerms: (state) => {
+        return state.origin ? `Origen: ${state.origin} | Destino: ${state.destination} | Partida: ${state.depart_date} | Regreso: ${state.return_date}` : null
+    }
+}
 
 const actions = {
-    getAllAirports({commit}) {
-        airportsApi.getAll(airports => {
-            commit('setAirports', airports)
-        })
+    async getAllAirports({commit}) {
+        const airports = await airportsApi.getAll()
+        commit('setAirports', airports)
     },
 
     choseOrigin({commit}, origin) {
