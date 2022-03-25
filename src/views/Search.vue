@@ -7,129 +7,129 @@
       <v-container>
         <v-row>
           <v-col
-              cols="12"
-              md="6"
-              lg="3"
+            cols="12"
+            md="6"
+            lg="3"
           >
             <v-autocomplete
-                v-model="origin"
-                :items="airports"
-                filled
-                :disabled="loading"
-                label="Ciudad de origen"
-                item-value="code"
-                item-text="code"
+              v-model="origin"
+              :items="airports"
+              filled
+              :disabled="loading"
+              label="Ciudad de origen"
+              item-value="code"
+              item-text="code"
             >
-              <template v-slot:selection="{ item }">
+              <template #selection="{ item }">
                 {{ item.city }} - {{ item.country }} ({{ item.code }})
               </template>
-              <template v-slot:item="{ item }">
+              <template #item="{ item }">
                 {{ item.city }} - {{ item.country }} ({{ item.code }})
               </template>
             </v-autocomplete>
           </v-col>
           <v-col
-              cols="12"
-              md="6"
-              lg="3"
+            cols="12"
+            md="6"
+            lg="3"
           >
             <v-autocomplete
-                v-model="destination"
-                :items="airports"
-                filled
-                :disabled="loading"
-                label="Ciudad de destino"
-                item-value="code"
-                item-text="code"
+              v-model="destination"
+              :items="airports"
+              filled
+              :disabled="loading"
+              label="Ciudad de destino"
+              item-value="code"
+              item-text="code"
             >
-              <template v-slot:selection="{ item }">
+              <template #selection="{ item }">
                 {{ item.city }} - {{ item.country }} ({{ item.code }})
               </template>
-              <template v-slot:item="{ item }">
+              <template #item="{ item }">
                 {{ item.city }} - {{ item.country }} ({{ item.code }})
               </template>
             </v-autocomplete>
           </v-col>
           <v-col
-              cols="12"
-              md="6"
-              lg="3"
+            cols="12"
+            md="6"
+            lg="3"
           >
             <v-menu
-                v-model="depart_date_menu"
-                :close-on-content-click="false"
-                transition="scale-transition"
-                offset-y
-                max-width="290px"
-                min-width="290px"
+              v-model="depart_date_menu"
+              :close-on-content-click="false"
+              transition="scale-transition"
+              offset-y
+              max-width="290px"
+              min-width="290px"
             >
-              <template v-slot:activator="{ on }">
+              <template #activator="{ on }">
                 <v-text-field
-                    color="#3A1C71"
-                    filled
-                    readonly
-                    :disabled="loading"
-                    append-icon="mdi-calendar"
-                    label="Fecha de partida"
-                    v-on="on"
-                    :value="depart_date"
-                ></v-text-field>
+                  color="#3A1C71"
+                  filled
+                  readonly
+                  :disabled="loading"
+                  append-icon="mdi-calendar"
+                  label="Fecha de partida"
+                  :value="depart_date"
+                  v-on="on"
+                />
               </template>
               <v-date-picker
-                  v-model="depart_date"
-                  no-title
-                  @input="depart_date_menu = false"
-              ></v-date-picker>
+                v-model="depart_date"
+                no-title
+                @input="depart_date_menu = false"
+              />
             </v-menu>
           </v-col>
           <v-col
-              cols="12"
-              md="6"
-              lg="3"
+            cols="12"
+            md="6"
+            lg="3"
           >
             <v-menu
-                v-model="return_date_menu"
-                :close-on-content-click="false"
-                transition="scale-transition"
-                offset-y
-                max-width="290px"
-                min-width="290px"
+              v-model="return_date_menu"
+              :close-on-content-click="false"
+              transition="scale-transition"
+              offset-y
+              max-width="290px"
+              min-width="290px"
             >
-              <template v-slot:activator="{ on }">
+              <template #activator="{ on }">
                 <v-text-field
-                    :value="return_date"
-                    color="#3A1C71"
-                    filled
-                    :disabled="loading"
-                    append-icon="mdi-calendar"
-                    label="Fecha de retorno"
-                    v-on="on"
-                ></v-text-field>
+                  :value="return_date"
+                  color="#3A1C71"
+                  filled
+                  :disabled="loading"
+                  append-icon="mdi-calendar"
+                  label="Fecha de retorno"
+                  v-on="on"
+                />
               </template>
               <v-date-picker
-                  v-model="return_date"
-                  :min="depart_date"
-                  no-title
-                  @input="return_date_menu = false"
-              ></v-date-picker>
+                v-model="return_date"
+                :min="depart_date"
+                no-title
+                @input="return_date_menu = false"
+              />
             </v-menu>
           </v-col>
         </v-row>
         <v-row>
           <v-col
-              cols="12"
-              md="3"
-              offset-md="9"
-              lg="2"
-              offset-lg="10"
+            cols="12"
+            md="3"
+            offset-md="9"
+            lg="2"
+            offset-lg="10"
           >
             <v-fab-transition>
               <v-btn
-                  block
-                  dark
-                  color="#3A1C71"
-                  elevation="2"
-                  type="submit"
+                block
+                dark
+                color="#3A1C71"
+                elevation="2"
+                type="submit"
               >
                 Buscar
               </v-btn>
@@ -141,7 +141,7 @@
   </v-card>
 </template>
 <script>
-import {mapActions, mapState} from 'vuex'
+import { mapActions, mapState } from 'vuex';
 
 export default {
   data: () => ({
@@ -153,54 +153,54 @@ export default {
   computed: {
     origin: {
       get() {
-        return this.$store.state.search.origin
+        return this.$store.state.search.origin;
       },
       set(value) {
-        this.choseOrigin(value)
-      }
+        this.choseOrigin(value);
+      },
     },
     destination: {
       get() {
-        return this.$store.state.search.destination
+        return this.$store.state.search.destination;
       },
       set(value) {
-        this.choseDestination(value)
-      }
+        this.choseDestination(value);
+      },
     },
     depart_date: {
       get() {
-        return this.$store.state.search.depart_date
+        return this.$store.state.search.depart_date;
       },
       set(value) {
-        this.$store.commit('search/setDepartDate', value)
-      }
+        this.$store.commit('search/setDepartDate', value);
+      },
     },
     return_date: {
       get() {
-        return this.$store.state.search.return_date
+        return this.$store.state.search.return_date;
       },
       set(value) {
-        this.$store.commit('search/setReturnDate', value)
-      }
+        this.$store.commit('search/setReturnDate', value);
+      },
     },
     ...mapState({
-      airports: state => state.search.airports
+      airports: (state) => state.search.airports,
     }),
   },
 
   methods: {
     ...mapActions({
       choseOrigin: 'search/choseOrigin',
-      choseDestination: 'search/choseDestination'
+      choseDestination: 'search/choseDestination',
     }),
     redirectToResults() {
-      this.$router.push('flights')
-    }
+      this.$router.push('flights');
+    },
   },
 
   async created() {
-    await this.$store.dispatch('search/getAllAirports')
-    this.loading = false
-  }
-}
+    await this.$store.dispatch('search/getAllAirports');
+    this.loading = false;
+  },
+};
 </script>
