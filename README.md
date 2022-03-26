@@ -10,7 +10,7 @@
 
 2. Crear el contenedor
     ```bash
-     run --name some-nginx -d -p 8090:80 bvelastegui/polimundo-frontend 
+    docker run --name some-nginx -d -p 8090:80 bvelastegui/polimundo-frontend 
     ```
 3. Acceder a [http://localhost:8090]()   
 
